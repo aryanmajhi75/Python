@@ -28,27 +28,27 @@ class Song(MusicItem):
         self.genre = genre
         self.explicit = explicit
 
-        def displayData(self):
-            print("""----------------------------------------------------------------------------\nSong Name     Artist          Release Date        Duration        Popularity     Genre       Explicit\n""")
-            print(f"{self.title}    {self.artist}       {self.release_year}     {self.duration}     {self.popularity}       {self.genre}        {self.explicit}\n")
-            print("----------------------------------------------------------------------------")
+    def displaySongData(self):
+        print("""----------------------------------------------------------------------------\nSong Name     Artist          Release Date        Duration        Popularity     Genre       Explicit\n""")
+        print(f"{self.title}    {self.artist}       {self.release_year}     {self.duration}     {self.popularity}       {self.genre}        {self.explicit}\n")
+        print("----------------------------------------------------------------------------")
 
-        def changeGenres(self,genre):
-            self.genre = genre
+    def changeSongGenre(self,genre):
+        self.genre = genre
         
-        def changeExplicit(self,explicit):
-            if(explicit == 'y'):
-                explicitValue=1
-            else:
-                explicitValue=0
-            self.explicit = explicitValue
+    def changeSongExplicit(self,explicit):
+        if(explicit == 'y'):
+            explicitValue=1
+        else:
+            explicitValue=0
+        self.explicit = explicitValue
 
 perfect=Song("Perfect","Ed Sheeran",2018,3.15,72.0,"Pop",1)
 perfect1=MusicItem("Perfect","Ed Sheeran",2018,3.15,72.0)
 perfect.displayData()
 
 def displaySong():
-    perfect.displayData()
+    perfect.displaySongData()
     perfect1.displayData()
 
 def changeDuration():
@@ -57,44 +57,52 @@ def changeDuration():
 
 def changeReleases():
     releases=input("Enter new release date : ")
-    perfect.displayData(releases)
+    perfect.changeReleases(releases)
+    perfect.displaySongData()
 
 def changePopularity():
     popularity=input("Enter new popularity : ")
     perfect.changePopularity(popularity)
-
+    perfect.displaySongData()
 
 def changeexplicit():
     explicit=input("Enter new explicit mode (y/n): ").lower()[0]
-    perfect1.changeexplicit(explicit)    
+    perfect.changeSongExplicit(explicit)
+    perfect.displaySongData()    
 
 def changeGenre():
-    explicit=input("Enter new explicit mode (y/n): ").lower()[0]
-    perfect1.changeexplicit(explicit)
+    explicit=input("Enter new genre: ").lower()
+    perfect.changeSongGenre(explicit)
+    perfect.displaySongData()
 
 def menu():
     while True:
         print("\nMenu:")
-        print("1. Make Codewords")
-        print("2. Exit")
+        print("1. Display Song ")
+        print("2. Change Duration")
+        print("3. Change Releases")
+        print("4. Change Genre")
+        print("5. Change Popularity")
+        print("6. Change Explicit")
+        print("7. Exit")
 
-        choice = input("Enter your choice (1/2): ")
+        choice = input("Enter your choice (1/2/3/4/5/6/7): ")
 
         if choice == "1":
             displaySong()
-            perfect.displayData()
+            perfect.displaySongData()
         elif choice == "2":
             changeDuration()
-            perfect.displayData()
+            perfect.displaySongData()
         elif choice == "3":
             changeReleases()
-            perfect.displayData()
+            perfect.displaySongData()
         elif choice == "4":
             changeGenre()
             perfect1.displayData()
         elif choice == "5":
             changePopularity()
-            perfect.displayData()
+            perfect.displaySongData()
         elif choice == "6":
             changeexplicit()
             perfect1.displayData()    
